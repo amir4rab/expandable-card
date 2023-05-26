@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="style.css" rel="stylesheet" />
+    <title>Expandable Card</title>
+  </head>
+  <body>
+    <button data-state="visible" class="card" id="card">
+      <img src="./banner.jpg" loading="lazy" class="img" />
+      <div class="header">
+        <h3>Subtitle</h3>
+        <h2>Title</h2>
+      </div>
+    </button>
+    <div data-state="hidden" class="card" id="expandableCard">
+      <img src="./banner.jpg" loading="lazy" class="img" />
+      <div class="header">
+        <h3>Subtitle</h3>
+        <h2>Title</h2>
+      </div>
+      <button id="close">Close</button>
+      <div class="content">
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellendus,
+        dolor! Error nostrum quos illum aperiam! Mollitia praesentium excepturi
+        dolorum, odio perferendis consectetur earum possimus quis in eum ab
+        consequuntur explicabo.
+      </div>
+    </div>
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>
