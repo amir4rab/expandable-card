@@ -2,43 +2,48 @@
 
 # Simple Expandable Card
 
+
 ## Expandable cards on the Web?
 
-You have most likely used the Apple app store, and been fascinated by the smooth card transitions to a full-screen page. It’s a common transition on native mobile apps, but it’s quite rare on the web. But fear not, we are going to create a boot lag version of it on the web, and for the cherry on top, we won’t use any additional library.
+You have most likely used the Apple app store, and been fascinated by the smooth card transitions to a full-screen page. It’s a common transition on native mobile apps, but it’s quite rare on the web. But fear not, we are going to create a bootleg version of it on the web, and for the cherry on top, we won’t use any additional library.
 
 ## Just a couple of things before we begun
 
-As you most likely will find out, there is much room for improvement. For example you might want to wrap the expanded card inside a dialog element to trap the focus and help with the accessibility or do a shallow path change on expand and shrink. In case you need a production-ready method for animating between two states you can use libraries such as framer-motion, or wait for the `Web Transitions API` to become available on Safari.
+As you most likely will find out, there is much room for improvement. For example you might want to wrap the expanded card inside a dialog element to trap the focus and help with the accessibility or do a shallow path change on expand and shrink. In case you need a production-ready method for animating between two states you can use libraries such as framer-motion[^framer-motion], or wait for the View Transitions API[^Web-Transitions-API] to become available on Safari[^safari-vta].
 
 ## How to do it?
 
 It's quite simple, there are 4 main steps in the process of expanding a card.
 
-![step 0](./images/step-0.jpg)
+![Create your 2 cards](./images/step-0.jpg)
 
 ### Step 0 - Create your 2 cards
 
-The two cards should have the same portion for the transition between them, you can see an example of it in image-1.
+The two cards should have the same portion for the transition between them, you can see an example of it in image 0/4.
 
-![step 1](./images/step-1.jpg)
+
+![Scaling down the expanded card to the same width](./images/step-1.jpg)
 
 ### Step 1 - Scaling down the expanded card to the same width
 
 In this step we need to scale down the extended card to the same width as the original card, we can use the `transform: scale(x);` for this action.
 
-![step 2](./images/step-2.jpg)
+
+![Masking to hide the extended portion](./images/step-2.jpg)
 
 ### Step 2 - Masking to hide the extended portion
 
 We have to use a clip-path to hide the extended portion of the expanded card. We can use the `clip-mask: inset(0 0 x% 0);` to mask the expanded card from the bottom up.
 
-![step 3](./images/step-3.jpg)
+
+![Positioning the cards](./images/step-3.jpg)
 
 ### Step 3 - Positioning the cards
 
-Since we want to expand the card from the original card, we have to position it at the same point. We can get the position of the original card with `el.getBoundingClientRect()` function, then use the `transform: translate(top, left);` with the addition of `position: fixed;` to place the expanded card at the same position of the original card.
+Since we want to expand the card from the original card, we have to position it at the same point. We can get the position of the original card with `el.getBoundingClientRect()` function, then use the `transform: translate(left, top);` with the addition of `position: fixed;` to place the expanded card at the same position of the original card.
 
-![step 4](./images/step-4.jpg)
+
+![Animating](./images/step-4.jpg)
 
 ### Step 4 - Animating
 
@@ -338,14 +343,17 @@ The result will be the amount that we need to mask in percentage.
 .card#expandableCard {
   opacity: 0;
 }
+.card#expandableCard[data-state='hidden'] {
+  pointer-events: none;
+}
 ```
 
 ##### Hiding the original card while the expanded card is displayed
 
 ```css
 /* style.css */
-.card#expandableCard[data-state='hidden'] {
-  pointer-events: none;
+.card[data-state='hidden'] {
+  opacity: 0;
 }
 ```
 
@@ -386,6 +394,10 @@ The result will be the amount that we need to mask in percentage.
 
 ## The complete example
 
-You can find the complete example on the current github repository or the following codesandbox link.
+You can find the complete example on the current repository or the following CodeSandbox[^codesandbox] link.
 
-[![Edit expandable-card](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/expandable-card-c4t38q?fontsize=14&hidenavigation=1&theme=dark)
+<br>
+
+[^Web-Transitions-API]: https://developer.chrome.com/docs/web-platform/view-transitions/
+[^safari-vta]: https://caniuse.com/mdn-api_viewtransition
+[^codesandbox]: https://codesandbox.io/s/c4t38q
